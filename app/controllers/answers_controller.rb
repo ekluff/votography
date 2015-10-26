@@ -1,6 +1,18 @@
 class AnswersController < ApplicationController
+  # GET /questions/new
+  def new
+    @answer = Answer.new
+    @question = Question.find(params[:question_id])
+    # binding.pry
+  end
+
+  # GET /questions/1/edit
+  def edit
+  end
+
   def create
     @answer = Answer.new(answer_params)
+    @answer.question = params[:question]
 
     if @answer.save
       redirect_to @answer, notice: 'Answer was successfully created.'
