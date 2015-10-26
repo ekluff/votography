@@ -8,6 +8,7 @@ FactoryGirl.define do
 
   factory :answer do
     text "Test Answer"
+    question
   end
   factory :invalid_answer, parent: :answer do
     text nil

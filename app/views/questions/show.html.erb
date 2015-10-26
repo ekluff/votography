@@ -1,5 +1,19 @@
 <p id="notice"><%= notice %></p>
 
+<h3>
+  <%= @question.text %>
+</h3>
+
+<% @question.answers.each do |a| %>
+  <%= a.text %>
+  <%= button_tag type: 'button' do %>
+    vote!
+  <% end %>
+<% end %>
+<%= render 'answers/form', {@question => @question, @answer => @answer} %>
+
+
+
 <p>
   <strong>Text:</strong>
   <%= @question.text %>
