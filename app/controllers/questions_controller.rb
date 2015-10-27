@@ -8,7 +8,6 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1
   def show
-    @answer = Answer.new
   end
 
   # GET /questions/new
@@ -54,6 +53,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def question_params
-      params.require(:question).permit(:text)
+      params[:question]
     end
 end
