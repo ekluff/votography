@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Questions</h1>
+<h1>Votography</h1>
 
 <table>
   <thead>
@@ -9,17 +9,50 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="questions_table">
     <% @questions.each do |question| %>
       <tr>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= question.text %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= question.answer_one %>
+        </td>
+        <td>
+          <%= button_to "this one!", {action: 'update', id: question.id}, {method: :patch, remote: true, params: {"question[votes_one]": 1}} %>
+        </td>
+        <td>
+          <%= question.votes_one %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= question.answer_two %>
+        </td>
+        <td>
+          <%= button_to "that one!", {action: 'update', id: question.id}, {method: :patch, remote: true, params: {"question[votes_two]": 1}} %>
+        </td>
+        <td>
+          <%= question.votes_one %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= link_to 'Show', question %> |
+        <%= link_to 'Edit', edit_question_path(question), remote: true %> |
+        <%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<div id="test_div">
+  <p>
+    
+  </p>
+</div>
+
 <br>
 
-<%= link_to 'New Question', new_question_path %>
+<%= link_to 'New Question', new_question_path, id: "new_question_link", remote: true %>

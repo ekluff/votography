@@ -24,7 +24,11 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to @question, notice: 'Question was successfully created.'
+      flash[:notice] = "Task successfully added!"
+      respond_to do |format|
+        format.html { redirect_to @question }
+        format.js
+      end
     else
       render :new
     end
@@ -53,6 +57,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def question_params
-      params[:question]
+      params.require(:question).permit(:text, :answer_one, :answer_two, :votes_one, :votes_two)
     end
 end
